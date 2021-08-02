@@ -1,4 +1,4 @@
-## Alibaba  Conceptual Graph (AliCG)
+## OpenConcepts
 
 [![License](https://img.shields.io/github/license/OpenKG-ORG/OpenConcepts?style=flat-square)](https://github.com/OpenKG-ORG/OpenConcepts/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/OpenKG-ORG/OpenConcepts?style=flat-square)](https://github.com/OpenKG-ORG/OpenConcepts/stargazers)
@@ -16,7 +16,7 @@ OpenConcepts (http://openconcepts.openkg.cn/) 是一个基于自动化知识抽�
 
 2. OpenConcepts是基于全自动化构建的方式，其整合了诸多自然语言处理算法并形成一套完整的知识抽取框架，具备自动化抽取、自动化扩展、自动化更新的能力。
 
-OpenConcepts的自动化构建主要分为两大模块，1）概念知识的自动化抽取 2） 概念知识的融合，[相关技术已经发表在国际顶会KDD 2021](https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&mid=2247530031&idx=1&sn=8628218cbf4386a2ff667305d3d8d3cd&scene=21#wechat_redirect)。我们首先通过开放的知识库、百科InfoBox等结构化、半结构化数据抽取粗粒度的概念。对于细粒度的概念，我们采取短语挖掘和序列标注相结合的策略，通过实体-概念模板和无监督短语挖掘构造弱监督样本，并基于迭代的降噪学习训练基于序列标注的概念抽取模型（http://openconcepts.openkg.cn/concept_extract_page），在离线测试集上概念抽取模型准确率可达0.89，召回率可达0.85。然后，我们对抽取到的不同的实体和概念进行融合，并通过贝叶斯估计过滤掉低置信度的概念。此外，我们也构造人工规则约束对高层次的概念进行人工干预，保证准确率。
+OpenConcepts的自动化构建主要分为两大模块，1）概念知识的自动化抽取 2） 概念知识的融合，相关技术已经发表在[国际顶会KDD 2021](https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&mid=2247530031&idx=1&sn=8628218cbf4386a2ff667305d3d8d3cd&scene=21#wechat_redirect)。我们首先通过开放的知识库、百科InfoBox等结构化、半结构化数据抽取粗粒度的概念。对于细粒度的概念，我们采取短语挖掘和序列标注相结合的策略，通过实体-概念模板和无监督短语挖掘构造弱监督样本，并基于迭代的降噪学习训练基于序列标注的[概念抽取模型](http://openconcepts.openkg.cn/concept_extract_page)，在离线测试集上概念抽取模型准确率可达0.89，召回率可达0.85。然后，我们对抽取到的不同的实体和概念进行融合，并通过贝叶斯估计过滤掉低置信度的概念。此外，我们也构造人工规则约束对高层次的概念进行人工干预，保证准确率。
 
 
 具体的说，我们首先从包含噪声的海量开放语料中提取常见的细粒度概念，然后获取候选概念和实例，并通过概率推理和概念匹配将候选概念和实例与相应的概念联系起来。我们定义了一组精准的模板来从高置信度的匹配查询中利用Bootstrapping方法提取概念短语。例如，“十大XXX”是一种可用于提取种子概念的模式。基于这种模式，我们可以抽取出“十大手机游戏”等概念。然而由于文本中存在大量的噪声，因此我们采用一种基于对齐一致性的Bootstrapping方法来处理含噪文本。假设在某一轮中找到的新模板p，n_s是现有种子概念集合中的概念数，p可以从查询集Q中提取这些概念。设n_e是p可以从Q中提取的新概念的个数，我们通过函数 Filter(p): 1) 和2)  维护模板集p ，其中、以及 是预定义的阈值，用于控制提取概念的精度。其次，我们通过对齐一致性对挖掘出的概念进行过滤，以提高细粒度概念的质量。最后，我们对挖掘出的细粒度实例和候选概念，利用概念判别器来判断每一个候选是概念还是实例，并通过概率推理和概念匹配将实例与这些分类的概念联系起来。具体的流程如下图所示：
