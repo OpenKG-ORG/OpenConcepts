@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/OpenKG-ORG/OpenConcepts?style=flat-square)](https://github.com/OpenKG-ORG/OpenConcepts/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/OpenKG-ORG/OpenConcepts?style=flat-square&color=blueviolet)](https://github.com/OpenKG-ORG/OpenConcepts/network/members)
 
-OpenConcepts (http://openconcepts.openkg.cn/) 是一个基于自动化知识抽取算法构建的中文概念图谱，由浙江大学知识引擎实验室贡献。本次开源了OpenConcepts中的440万概念核心实体，以及5万概念和1200万实体-概念三元组，并提供json,ttl, json-ld多种格式的原始Dump下载。
+OpenConcepts (http://openconcepts.zjukg.cn/) 是一个基于自动化知识抽取算法构建的中文概念图谱，由浙江大学知识引擎实验室贡献。本次开源了OpenConcepts中的440万概念核心实体，以及5万概念和1200万实体-概念三元组，并提供json,ttl, json-ld多种格式的原始Dump下载。
 
 概念是人脑对事物的本质反应，能够帮助机器更好的理解自然语言。相较于传统的知识图谱，OpenConcepts包含大量中文细粒度概念，且具备自动更新、自动扩充的能力。比如对于“刘德华”这一实体，OpenConcepts不仅包含“香港歌手”、“演员”等传统概念，还具有“华语歌坛不老男歌手”、“娱乐圈绝世好男人”等细粒度标签。
 
@@ -34,7 +34,7 @@ OpenConcepts的自动化构建主要分为两大模块，1）概念知识的自�
  本次，我们开源了OpenConcepts中的440万概念核心实体，以及5万概念和1200万实体-概念三元组。这些数据包括了常见的人物、地点等通用实体。我们的数据还在不断更新中。本次开源的数据可在openkg.cn 获取，OpenConcepts能够为智能推荐、智能问答、人机对话等应用提供数据支持。
 
 
-我们的API接口开放在[url](http://openconcepts.openkg.cn/api_page)。可以指定实例，返回若干概念实例集，包含相应的概念层级和置信度。例如我们可以发送[http://openconcepts.openkg.cn/api/entity_concept?entity=南华园](http://openconcepts.openkg.cn/api/entity_concept?entity=南华园)，来询问“南华园”这一实例。返回一个字典，其中"位置"概念属于概念级别1，置信度为0.43；"楼盘"属于概念级别2，置信度为0.75；"房产"属于概念级别1，置信度为0.43；"学校"属于概念级别2，置信度为0.25；"教育"属于概念级别1，置信度为0.14。同时在网站的分页面我们也开放了各类概念数据集的下载链接。
+我们的API接口开放在[url](http://openconcepts.zjukg.cn/api_page)。可以指定实例，返回若干概念实例集，包含相应的概念层级和置信度。例如我们可以发送[http://openconcepts.zjukg.cn/api/entity_concept?entity=南华园](http://openconcepts.zjukg.cn/api/entity_concept?entity=南华园)，来询问“南华园”这一实例。返回一个字典，其中"位置"概念属于概念级别1，置信度为0.43；"楼盘"属于概念级别2，置信度为0.75；"房产"属于概念级别1，置信度为0.43；"学校"属于概念级别2，置信度为0.25；"教育"属于概念级别1，置信度为0.14。同时在网站的分页面我们也开放了各类概念数据集的下载链接。
 
 
 ## 致谢
